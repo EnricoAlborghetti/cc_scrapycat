@@ -33,10 +33,7 @@ jobs:
         echo "plugin_name=${{ env.PLUGIN_NAME }}" >> $GITHUB_OUTPUT
 # This is the end of the removed section
   release:
-  # This will be deleted by setup.py
     needs: check
-    if: startsWith(needs.check.outputs.plugin_name, 'MY_PLUGIN') == false
-  # This is the end of the removed section
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
