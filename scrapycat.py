@@ -2,8 +2,7 @@ from cat.mad_hatter.decorators import tool, hook
 from typing import Dict
 from cat.log import log
 from bs4 import BeautifulSoup
-import requests
-import re
+from requests_html import HTMLSession
 
 internal_links = []  # List of internal URLs on the site
 visited_pages = []  # List of visited pages during crawling
@@ -47,11 +46,18 @@ def crawler(page):
         if page.startswith("/") or page.startswith(f"{root_url}"):
 
             log.warning("Crawling page: " + page)
-            headers = {
-                "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:55.0) Gecko/20100101 Firefox/55.0",
-            }
-            response = requests.get(page, headers=headers).text
-            soup = BeautifulSoup(response, "html.parser")
+            # headers = {
+            #     "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:55.0) Gecko/20100101 Firefox/55.0",
+            # }
+            # response = requests.get(page, headers=headers).text
+            session = HTMLSession()
+            session.headers.update({
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
+            })
+            response = session.get(url)
+            response.html.render()
+            html_content = response.html.html
+            soup = BeautifulSoup(html_content, "html.parser")
             urls = [link["href"] for link in soup.select("a[href]")]
 
             for url in urls:
