@@ -1,10 +1,10 @@
 {
   "name": "Scrapy Cat",
-  "description": "Plugin that allow to scrape an entire website and ingest in rabbithole all website pages and PDFs",
+  "description": "Plugin that allow to scrape an entire website, JS included, and ingest in rabbithole all website pages and PDFs",
   "author_name": "Team Sviluppo",
   "author_url": "https://www.teamsviluppo.it/",
   "plugin_url": "https://github.com/team-sviluppo/cc_scrapycat",
   "thumb": "https://raw.githubusercontent.com/team-sviluppo/cc_scrapycat/396e82308648ffe1e3e6acd934f0c9e4adc41348/scrapycatlogo.png",
   "tags": "plugins, prompt",
-  "version": "1.0.0"
+  "version": "1.1.0"
 }
